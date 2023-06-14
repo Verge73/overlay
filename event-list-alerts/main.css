@@ -79,7 +79,7 @@ body {
 	text-align: center;
 	height: 120px;
 	width: 100vw;
-	background: rgba(0, 0, 0, 1);
+	background: rgba(0, 0, 0, 0.9);
 }
 
 .name, .eventRow .icon, .msg, .alertChild {
