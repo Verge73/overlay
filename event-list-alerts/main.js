@@ -250,7 +250,7 @@ function sendEvent(nameData, eventData) {
 	let eventCount = $(".eventRow").length;
 	$(".eventRow").each(function() {
 		let e = $(this);
-		let opacity = 1 - (eventCount * 0.15);
+		let opacity = 1 - (eventCount * 0.22);
 
 		$(this).css("transition", ".5s").css("opacity", opacity);
 		if(opacity <= 0) {
