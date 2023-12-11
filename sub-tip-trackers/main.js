@@ -7,7 +7,7 @@ var goals = {
 
 	tips: {
 		title: "Fursuit",
-		goal: 999999999,
+		goal: 5,
 		type: "currency"
 	}
 };
