@@ -158,7 +158,7 @@ function startSEWebsocket() {
 			let alertHtml = `tipped <span class="alertBold alertThing">${formatted_amount}</span> via StreamElements!`;
 
 			sendEvent({name: name}, {text: formatted_amount});
-			addAlert({name: name, showPFP: false, html: alertHtml, audio: "hetero. sexual. life. partners.mp3"});
+			addAlert({name: name, showPFP: false, html: alertHtml, audio: "heteros.mp3"});
 		}
 
 		// using SE for now for follow alerts, i'd have to move to twitch's eventsub thing
