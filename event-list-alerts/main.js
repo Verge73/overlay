@@ -538,7 +538,8 @@ const hideAccounts = [
 	"wizebot",
 	"fossabot",
 	"blerp",
-	"revolverlanceobot"
+	"revolverlanceobot",
+	"VeryGraeBotTom"
 ];
 var seenAccounts = [];
 var greetingMessages = [
