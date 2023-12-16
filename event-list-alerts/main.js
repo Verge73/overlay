@@ -434,6 +434,9 @@ fetch('https://api.elevenlabs.io/v1/text-to-speech/PmxyxhMMr4p99dBVCopY?optimize
   .catch(err => console.error(err));
 		
 		}
+		 else {
+			processAlertsTO = setTimeout(processAlerts, 7000);
+		 }
 
 			
 	});
