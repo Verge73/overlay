@@ -374,7 +374,7 @@ function doAlert() {
 				alertAudioElem[0].play();
 			}
 		}
-/*		
+	
 if(alertData.doTTS) {
 			const req = new XMLHttpRequest()
 			req.open('POST', `https://tiktok-tts.weilnet.workers.dev/api/generation`, false)
@@ -405,61 +405,9 @@ if(alertData.doTTS) {
 			processAlertsTO = setTimeout(processAlerts, 7000);
 		}
 
-*/
 
 		
-		if (alertData.doTTS) {
-  const req = new XMLHttpRequest();
-  req.open('POST', `https://tiktok-tts.weilnet.workers.dev/api/generation`, false);
-  req.setRequestHeader('Content-Type', 'application/json');
-  req.send(JSON.stringify({
-    text: `${alertData.name === "" ? alertData.username : alertData.name} ${alertMsgElem.text()}`,
-    voice: "en_us_001"
-  }));
-
-  let resp = JSON.parse(req.responseText);
-  console.log(resp);
-
-  if (resp.data === null) {
-    processAlertsTO = setTimeout(processAlerts, 7000);
-  } else {
-    // Fetch and play the TTS audio
-    const options = {
-      method: 'POST',
-      headers: {
-        'xi-api-key': '5416bfbffae6ad12a9e1c4ad6a0b1b51',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        text: resp.data,
-        model_id: 'eleven_multilingual_v2'
-      })
-    };
-
-    fetch('https://api.elevenlabs.io/v1/text-to-speech/PmxyxhMMr4p99dBVCopY?optimize_streaming_latency=1&output_format=mp3_44100_128', options)
-      .then(response => response.blob())
-      .then(blob => {
-        const url = URL.createObjectURL(blob);
-        ttsAudioElem[0].src = url;
-        ttsAudioElem[0].volume = 0.67;
-        ttsAudioElem[0].oncanplaythrough = function (event) {
-          ttsAudioElem[0].play();
-          processAlertsTO = -1;
-        };
-        ttsAudioElem[0].onended = function (event) {
-          console.log("ENDED");
-          processAlertsTO = setTimeout(processAlerts, 2500);
-        };
-      })
-      .catch(err => {
-        console.error(err);
-        processAlertsTO = setTimeout(processAlerts, 7000);
-      });
-  }
-} else {
-  processAlertsTO = setTimeout(processAlerts, 7000);
-}
-	
+		
 
 			
 	});
