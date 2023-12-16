@@ -374,7 +374,7 @@ function doAlert() {
 				alertAudioElem[0].play();
 			}
 		}
-/*
+
 		if(alertData.doTTS) {
 			const req = new XMLHttpRequest()
 			req.open('POST', `https://tiktok-tts.weilnet.workers.dev/api/generation`, false)
@@ -404,52 +404,9 @@ function doAlert() {
 		} else {
 			processAlertsTO = setTimeout(processAlerts, 7000);
 		}
-	*/
+	
 
-			if (alertData.doTTS) {
-  const req = new XMLHttpRequest();
-  req.open('POST', `https://tiktok-tts.weilnet.workers.dev/api/generation`, false);
-  req.setRequestHeader('Content-Type', 'application/json');
-  req.send(JSON.stringify({
-    text: `${alertData.name === "" ? alertData.username : alertData.name} ${alertMsgElem.text()}`,
-    voice: "en_us_001"
-  }));
-
-  let resp = JSON.parse(req.responseText);
-  console.log(resp);
-
-  if (resp.data === null) {
-    setTimeout(() => processAlerts(), 7000);
-    setTimeout(() => {
-      // Simulate a 3.5-second wait before playing the audio
-      console.log("Waiting...");
-      // Trigger the TTS audio playback
-      ttsAudioElem[0].play();
-    }, 3500);
-  } else {
-    ttsAudioElem[0].src = `data:audio/mpeg;base64,${resp.data}`;
-    ttsAudioElem[0].volume = 0.67;
-
-    let ttsAudioLoaded = false;
-
-    ttsAudioElem[0].addEventListener('canplaythrough', () => {
-      if (!ttsAudioLoaded) {
-        ttsAudioLoaded = true;
-      }
-    });
-
-    ttsAudioElem[0].addEventListener('ended', () => {
-      console.log('ENDED');
-
-      // Delay 2.5 seconds before processing the next alert
-      setTimeout(() => processAlerts(), 2500);
-    });
-  }
-} else {
-  setTimeout(() => processAlerts(), 7000);
-}
-
-		
+			
 	});
 }
 
