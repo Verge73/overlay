@@ -102,7 +102,7 @@ function startSLWebsocket() {
 
 		if(eventData.for === "streamlabs" && eventData.type === "donation") {
 			sendEvent({name: data.from}, {text: `${data.formatted_amount} ${data.currency}`});
-			addAlert({name: data.from, showPFP: false, html: `tipped <span class="alertBold alertThing">${data.formatted_amount} ${data.currency}</span> via Streamlabs!`, audio: "positive-game-sound-2.ogg"});
+			addAlert({name: data.from, showPFP: false, html: `tipped <span class="alertBold alertThing">${data.formatted_amount} ${data.currency}</span> via Streamlabs!`, audio: "temp.mp3"});
 		}
 		if(eventData.for === "treatstream" && eventData.type === "treat") {
 			// TODO: move this to treatstream's actual API in case something happens on streamlabs's side, always good to reduce points of failure.
@@ -112,7 +112,7 @@ function startSLWebsocket() {
 			// worried some treat names might be too long
 			// sendEvent({name: data.from}, {text: `SENT A ${data.title.toUpperCase()}`});
 			sendEvent({name: data.from}, {text: `SENT A TREAT`});
-			addAlert({name: data.from, showPFP: false, html: `sent a <span class="alertBold alertThing">${data.title}</span> via TreatStream!`, audio: "new-message-3.ogg"});
+			addAlert({name: data.from, showPFP: false, html: `sent a <span class="alertBold alertThing">${data.title}</span> via TreatStream!`, audio: "temp.mp3"});
 		}
 	});
 }
@@ -158,7 +158,7 @@ function startSEWebsocket() {
 			let alertHtml = `tipped <span class="alertBold alertThing">${formatted_amount}</span> via StreamElements!`;
 
 			sendEvent({name: name}, {text: formatted_amount});
-			addAlert({name: name, showPFP: false, html: alertHtml, audio: "heteros.mp3"});
+			addAlert({name: name, showPFP: false, html: alertHtml, audio: "temp.mp3"});
 		}
 
 		// using SE for now for follow alerts, i'd have to move to twitch's eventsub thing
@@ -464,7 +464,7 @@ client.on("cheer", function(channel, tags, msg) {
 	let alertHtml = `cheered with <div class="icon" style="background-image: url('icons/${outObject.icon.replace("png", "gif")}');"><img src="icons/${outObject.icon.replace("png", "gif")}"/></div> <span class="alertBold" style="background-color: ${outObject.color};">${outObject.text}</span> bits!`;
 
 	sendEvent({name: name}, outObject);
-	addAlert({username: tags.username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "bits.ogg"});
+	addAlert({username: tags.username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "temp.mp3"});
 });
 
 client.on("resub", function(channel, username, streak, message, tags, methods) {
@@ -478,7 +478,7 @@ client.on("resub", function(channel, username, streak, message, tags, methods) {
 	let alertHtml = `resubscribed ${plan === "Prime" ? "with" : "at"} <span class="alertBold alertThing">${plan}</span> for <span class="alertBold alertThing">${months} months</span>!`;
 
 	sendEvent({name: name}, {text: `RESUB <span style="font-size: 14px;">x</span>${months}`});
-	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "new-message-2.ogg"});
+	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "temp.mp3"});
 });
 
 client.on("subscription", (channel, username, methods, message, tags) => {
@@ -491,7 +491,7 @@ client.on("subscription", (channel, username, methods, message, tags) => {
 	let alertHtml = `subscribed ${plan === "Prime" ? "with" : "at"} <span class="alertBold alertThing">${plan}</span>!`;
 
 	sendEvent({name: name}, {text: "NEW SUB"});
-	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "new-message-2.ogg"});
+	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "temp.mp3"});
 });
 
 // absolutely frick you, twitch
@@ -524,7 +524,7 @@ client.on("subgift", (channel, username, streakMonths, recipient, methods, tags)
 	let alertHtml = `gifted ${amountStr}a <span class="alertBold alertThing">${plan} subscription</span> to <span class="alertBold alertThing">${recep}</span>!`;
 
 	sendEvent({name: name}, {text: "GIFTED SUB"});
-	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "new-message-5.ogg"});
+	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "temp.mp3"});
 });
 
 client.on("submysterygift", (channel, username, numbOfSubs, methods, tags) => {
@@ -545,7 +545,7 @@ client.on("submysterygift", (channel, username, numbOfSubs, methods, tags) => {
 	keepSkippingUntilZero = numbOfSubs;
 
 	sendEvent({name: name}, {text: amountStr});
-	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "new-message-5.ogg"});
+	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "temp.mp3"});
 });
 
 client.on("raided", (channel, username, viewers, tags) => {
@@ -557,7 +557,7 @@ client.on("raided", (channel, username, viewers, tags) => {
 	let alertHtml = `raided the channel with <span class="alertBold alertThing">${viewers.toLocaleString()} viewers</span>!`;
 
 	sendEvent({name: name}, {text: `RAID <span style="font-size: 14px;">x</span>${viewers.toLocaleString()}`});
-	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "bonus-2.ogg"});
+	addAlert({username: username, name: tags['display-name'], showPFP: true, html: alertHtml, audio: "temp.mp3"});
 });
 
 const hideAccounts = [
