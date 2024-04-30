@@ -102,7 +102,7 @@ function startSLWebsocket() {
 
 		if(eventData.for === "streamlabs" && eventData.type === "donation") {
 			sendEvent({name: data.from}, {text: `${data.formatted_amount} ${data.currency}`});
-			addAlert({name: data.from, showPFP: false, html: `tipped <span class="alertBold alertThing">${data.formatted_amount} ${data.currency}</span> via Streamlabs!`, audio: "pipe.mp3"});
+			addAlert({name: data.from, showPFP: false, html: `tipped <span class="alertBold alertThing">${data.formatted_amount} ${data.currency}</span> via Streamlabs!`, audio: "waltuh.mp3"});
 		}
 		if(eventData.for === "treatstream" && eventData.type === "treat") {
 			// TODO: move this to treatstream's actual API in case something happens on streamlabs's side, always good to reduce points of failure.
@@ -112,7 +112,7 @@ function startSLWebsocket() {
 			// worried some treat names might be too long
 			// sendEvent({name: data.from}, {text: `SENT A ${data.title.toUpperCase()}`});
 			sendEvent({name: data.from}, {text: `SENT A TREAT`});
-			addAlert({name: data.from, showPFP: false, html: `sent a <span class="alertBold alertThing">${data.title}</span> via TreatStream!`, audio: "pipe.mp3"});
+			addAlert({name: data.from, showPFP: false, html: `sent a <span class="alertBold alertThing">${data.title}</span> via TreatStream!`, audio: "waltuh.mp3"});
 		}
 	});
 }
@@ -158,7 +158,7 @@ function startSEWebsocket() {
 			let alertHtml = `tipped <span class="alertBold alertThing">${formatted_amount}</span> via StreamElements!`;
 
 			sendEvent({name: name}, {text: formatted_amount});
-			addAlert({name: name, showPFP: false, html: alertHtml, audio: "pipe.mp3"});
+			addAlert({name: name, showPFP: false, html: alertHtml, audio: "waltuh.mp3"});
 		}
 
 		// using SE for now for follow alerts, i'd have to move to twitch's eventsub thing
